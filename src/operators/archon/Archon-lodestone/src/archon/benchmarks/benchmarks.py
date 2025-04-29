@@ -1027,29 +1027,17 @@ class GPQADiamondBenchmark(Benchmark):
         self.save_type = "jsonl"
 
     def load_dataset(self):
-        # Load the GPQA dataset (local_task):
         self.dataset = datasets.load_dataset("Idavidrein/gpqa", "gpqa_diamond")["train"]
-        #print("DATA 1")
-        #print("dataset_sample =", self.dataset_sample)  
-        #self.debug_data = True
-        #print("debug_data =", self.debug_data)
-        #print(self.dataset)
         self.dataset_sample = 0.505050
         if self.dataset_sample < 1.0:
             self.dataset = self.dataset.select(range(int(len(self.dataset) * self.dataset_sample)))
-            #print("DATA 2")
-            #print(self.dataset)
         elif self.debug_data:
             self.dataset = self.dataset.select(range(5))
-            #print("DATA 3")
-            #print(self.dataset)
 
         print(f"Total number of items to process: {len(self.dataset)}")
         return self.dataset
 
     def get_answer(self, item, model, config, **kwargs):
-        # Format the prompt from GPQA-style data
-        #logger.info("ITEM IS", item)
         choices = [
             item["Correct Answer"],
             item["Incorrect Answer 1"],
@@ -1058,7 +1046,7 @@ class GPQADiamondBenchmark(Benchmark):
         ]
         # Randomize the order of choices to avoid position bias
         import random
-        random.seed(42)  # Optional: for reproducibility
+        random.seed(42)  
         random.shuffle(choices)
 
         # Determine the new index of the correct answer after shuffling
