@@ -13,6 +13,21 @@ from litellm import completion
 import re
 from typing import Dict, Any, List
 from dotenv import load_dotenv
+import threading
+
+log_lock = threading.Lock()
+thread_local_storage = threading.local()
+
+
+USAGE_LOG_PATH = "/Users/yashaga/lodestone/src/operators/archon/Archon-lodestone/src/gpqa_multithreaded_log.jsonl"
+
+def log_usage(model, usage):
+    entry = {
+        "model": model,
+        "usage": usage
+    }
+    with open(USAGE_LOG_PATH, "a") as f:
+        f.write(json.dumps(entry) + "\n")
 
 load_dotenv()
 
@@ -217,9 +232,23 @@ class vllmWrapper:
         return response
 
 
+def log_usage(model, usage):
+    entry = {
+        "model": model,
+        "usage": usage
+    }
+    with open(USAGE_LOG_PATH, "a") as f:
+        f.write(json.dumps(entry) + "\n")
+
 def generate_together(model, messages, max_tokens=2048, temperature=0.7, **kwargs):
     output = None
-
+    print("MESSAGES IS", messages)
+    contentToModel = {
+        'You are a helpful assistant.': "generator",
+        'You are a critical evaluator.': "critic",
+        'You are a helpful assistant who ranks multiple answers': "ranker",
+        'You are a helpful assistant who fuses multiple answers': "fuser"
+    }
     key = (
         KEYS.get_current_key("TOGETHER_API_KEY")
         if KEYS
@@ -241,7 +270,8 @@ def generate_together(model, messages, max_tokens=2048, temperature=0.7, **kwarg
             endpoint = "https://api.together.xyz/v1/chat/completions"
 
             time.sleep(2)
-
+            
+            start_time = time.time()
             res = requests.post(
                 endpoint,
                 json={
@@ -254,6 +284,7 @@ def generate_together(model, messages, max_tokens=2048, temperature=0.7, **kwarg
                     "Authorization": f"Bearer {key}",
                 },
             )
+            elapsed_time = time.time() - start_time
             if "error" in res.json():
 
                 print("------------------------------------------")
@@ -273,6 +304,25 @@ def generate_together(model, messages, max_tokens=2048, temperature=0.7, **kwarg
                         logger.error(f"Exhausted all keys for Together")
                         break
 
+            description = messages[0]['content']
+            question = messages[1]['content']
+            model = res.json()['model']
+            usage = res.json()['usage']
+            entry = {
+                "model": model,
+                "usage": usage
+            }
+            with log_lock:
+                '''
+                with open(USAGE_LOG_PATH, "a") as f:
+                    f.write(contentToModel[description] + "\n")
+                    f.write(str(elapsed_time) + "\n")
+                log_usage(model,usage)
+                '''
+                if not hasattr(thread_local_storage, "log_buffer"):
+                    thread_local_storage.log_buffer = []
+
+                thread_local_storage.log_buffer.append((contentToModel.get(description, "unknown"), str(elapsed_time), entry))
             output = res.json()["choices"][0]["message"]["content"]
 
             break
@@ -348,6 +398,7 @@ def generate_openai(model, messages, max_tokens=2048, temperature=0.7, **kwargs)
                 )
                 logger.debug(f"Full message being sent: {messages}")
 
+            start_time = time.time()
             response = completion(
                 model=model,
                 messages=messages,
@@ -355,8 +406,40 @@ def generate_openai(model, messages, max_tokens=2048, temperature=0.7, **kwargs)
                 max_tokens=max_tokens,
                 **kwargs  # proxies etc. are handled properly by LiteLLM
             )
+            elapsed_time = time.time() - start_time
 
             output = response["choices"][0]["message"]["content"]
+            print("OPENAI")
+            usage = {
+                "prompt_tokens": response.usage.prompt_tokens,
+                "completion_tokens": response.usage.completion_tokens,
+                "total_tokens": response.usage.total_tokens,
+            }
+            usageDict = {
+                "model": response.model,
+                "usage": usage
+            }
+            print(usage)
+
+            description = messages[0]["content"]
+            contentToModel = {
+                'You are a helpful assistant.': "generator",
+                'You are a critical evaluator.': "critic",
+                'You are a helpful assistant who ranks multiple answers': "ranker",
+                'You are a helpful assistant who fuses multiple answers': "fuser"
+            }
+            with log_lock:
+                '''
+                with open(USAGE_LOG_PATH, "a") as f:
+                    f.write(contentToModel.get(description, "unknown") + "\n")
+                    f.write(str(elapsed_time) + "\n")
+                    f.write(json.dumps({"model": response.model, "usage": usage}) + "\n")
+                '''
+                if not hasattr(thread_local_storage, "log_buffer"):
+                    thread_local_storage.log_buffer = []
+
+                thread_local_storage.log_buffer.append((contentToModel.get(description, "unknown"), elapsed_time, usageDict))
+
             break
 
         except Exception as e:

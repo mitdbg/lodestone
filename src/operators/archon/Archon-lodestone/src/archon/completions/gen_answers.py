@@ -67,12 +67,13 @@ def main(args):
             tqdm(
                 executor.map(
                     partial(
-                        benchmark.get_answer,
+                        benchmark.get_answer, 
                         model=archon,
                         config=archon_config,
-                        samples=args.samples,
+                        samples=args.samples
                     ),
-                    eval_set,
+                    eval_set,  
+                    #[i + 1 for i in range(len(eval_set))]  
                 ),
                 total=len(eval_set),
             )

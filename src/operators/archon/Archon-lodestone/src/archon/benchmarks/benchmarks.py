@@ -14,6 +14,7 @@ from .mix_eval.utils import (
 from .code_contests.utils import get_python_solutions
 import os
 import re
+from archon.completions.utils import thread_local_storage, log_lock, USAGE_LOG_PATH
 
 
 
@@ -969,7 +970,6 @@ class MMLUBenchmark(Benchmark):
     def load_dataset(self):
         # Load the MMLU dataset (local_task):
         self.dataset = datasets.load_dataset("cais/mmlu", self._local_task)["test"]
-
         if self.dataset_sample < 1.0:
             self.dataset = self.dataset.select(
                 range(int(len(self.dataset) * self.dataset_sample))
@@ -980,7 +980,7 @@ class MMLUBenchmark(Benchmark):
         print(f"Total number of items to process: {len(self.dataset)}")
         return self.dataset
 
-    def get_answer(self, item, model, config, **kwargs):
+    def get_answer(self, item, model, config,  **kwargs):
 
         # Format the prompt for the model
         prompt = f"Question: {item['question']}\nA. {item['choices'][0]}\nB. {item['choices'][1]}\nC. {item['choices'][2]}\nD. {item['choices'][3]}\n\nAnswer:"
@@ -1021,6 +1021,101 @@ class MMLUBenchmark(Benchmark):
             json.dump(list(answers), f, indent=2)
 
 
+class GPQADiamondBenchmark(Benchmark):
+    def __init__(self, dataset_sample=1.0, debug_data=False):
+        super().__init__(dataset_sample=dataset_sample, debug_data=debug_data)
+        self.save_type = "jsonl"
+
+    def load_dataset(self):
+        # Load the GPQA dataset (local_task):
+        self.dataset = datasets.load_dataset("Idavidrein/gpqa", "gpqa_diamond")["train"]
+        #print("DATA 1")
+        #print("dataset_sample =", self.dataset_sample)  
+        #self.debug_data = True
+        #print("debug_data =", self.debug_data)
+        #print(self.dataset)
+        self.dataset_sample = 0.505050
+        if self.dataset_sample < 1.0:
+            self.dataset = self.dataset.select(range(int(len(self.dataset) * self.dataset_sample)))
+            #print("DATA 2")
+            #print(self.dataset)
+        elif self.debug_data:
+            self.dataset = self.dataset.select(range(5))
+            #print("DATA 3")
+            #print(self.dataset)
+
+        print(f"Total number of items to process: {len(self.dataset)}")
+        return self.dataset
+
+    def get_answer(self, item, model, config, **kwargs):
+        # Format the prompt from GPQA-style data
+        #logger.info("ITEM IS", item)
+        choices = [
+            item["Correct Answer"],
+            item["Incorrect Answer 1"],
+            item["Incorrect Answer 2"],
+            item["Incorrect Answer 3"]
+        ]
+        # Randomize the order of choices to avoid position bias
+        import random
+        random.seed(42)  # Optional: for reproducibility
+        random.shuffle(choices)
+
+        # Determine the new index of the correct answer after shuffling
+        correct_index = choices.index(item["Correct Answer"])
+
+        # Build multiple choice prompt
+        prompt = f"Question: {item['Question']}\n"
+        prompt += f"A. {choices[0]}\nB. {choices[1]}\nC. {choices[2]}\nD. {choices[3]}\n\nAnswer:"
+        prompt += " At the end of your response, output your final answer in the format: 'The answer is: [answer]'."
+
+        messages = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt},
+        ]
+
+        output = model.generate(messages)
+
+        if hasattr(thread_local_storage, "log_buffer"):
+  # if it's defined there
+            with log_lock:
+                with open(USAGE_LOG_PATH, "a") as f:
+                    for layer_type, elapsed_time, usage in thread_local_storage.log_buffer:
+                        f.write(layer_type + "\n")
+                        f.write(str(elapsed_time) + "\n")
+                        f.write(json.dumps({"model": usage["model"], "usage": usage["usage"]}) + "\n")
+                thread_local_storage.log_buffer = []
+        # Create the response object
+        answer = {
+            "prompt": prompt,
+            "correct_index": correct_index,
+            "output": output,
+            "generator": config["name"],
+            "target": correct_index,  # 0 for A, 1 for B, etc.
+            "task": "gpqa_diamond"
+        }
+
+        return answer
+
+
+    def process_results(self, results):
+        # Add the generated answers to the dataset
+        self.dataset = self.dataset.add_column("prompt", [r["prompt"] for r in results])
+        self.dataset = self.dataset.add_column("output", [r["output"] for r in results])
+        self.dataset = self.dataset.add_column(
+            "generator", [r["generator"] for r in results]
+        )
+        self.dataset = self.dataset.add_column(
+            "correct_index", [r["correct_index"] for r in results]
+        )
+        return self.dataset
+
+    def save_answers(self, output_path, answers=None):
+        if answers is None:
+            answers = self.dataset
+        with open(output_path, "w") as f:
+            json.dump(list(answers), f, indent=2)
+
 BENCHMARK_CLASSES = {
     "alpaca_eval": AlpacaEvalBenchmark,
     "mt_bench": MtBenchBenchmark,
@@ -1034,6 +1129,7 @@ BENCHMARK_CLASSES = {
     "math": MATHBenchmark,
     "minif2f": MiniF2FBenchmark,
     "mmlu": MMLUBenchmark,
+    "gpqa_diamond": GPQADiamondBenchmark
 }
 
 
