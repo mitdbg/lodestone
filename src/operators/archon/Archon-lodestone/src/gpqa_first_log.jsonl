@@ -1,0 +1,346 @@
+archon-config-1.json
+generator
+14.936460018157959
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 147, "completion_tokens": 573, "total_tokens": 720}}
+generator
+4.833930969238281
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 144, "total_tokens": 626, "completion_tokens": 482}}
+generator
+5.317821025848389
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 162, "completion_tokens": 360, "total_tokens": 522, "cached_tokens": 0}}
+critic
+10.89976692199707
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 1942, "completion_tokens": 425, "total_tokens": 2367}}
+ranker
+2.918287992477417
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 2435, "total_tokens": 2695, "completion_tokens": 260}}
+generator
+9.515030145645142
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 154, "completion_tokens": 365, "total_tokens": 519}}
+generator
+4.120934963226318
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 169, "total_tokens": 575, "completion_tokens": 406}}
+generator
+5.798370838165283
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 172, "completion_tokens": 523, "total_tokens": 695, "cached_tokens": 0}}
+critic
+12.48828411102295
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 1787, "completion_tokens": 450, "total_tokens": 2237}}
+ranker
+3.8525309562683105
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 2424, "total_tokens": 2796, "completion_tokens": 372}}
+generator
+25.719409942626953
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 178, "completion_tokens": 999, "total_tokens": 1177}}
+generator
+11.478094100952148
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 175, "total_tokens": 1356, "completion_tokens": 1181}}
+generator
+6.564694166183472
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 197, "completion_tokens": 716, "total_tokens": 913, "cached_tokens": 0}}
+critic
+13.668461799621582
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 3463, "completion_tokens": 555, "total_tokens": 4018}}
+ranker
+4.191786289215088
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 4170, "total_tokens": 4535, "completion_tokens": 365}}
+generator
+6.544122219085693
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 152, "completion_tokens": 238, "total_tokens": 390}}
+generator
+4.5403242111206055
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 156, "total_tokens": 584, "completion_tokens": 428}}
+generator
+2.347430944442749
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 174, "completion_tokens": 255, "total_tokens": 429, "cached_tokens": 0}}
+critic
+11.606037855148315
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 1399, "completion_tokens": 436, "total_tokens": 1835}}
+ranker
+2.7648820877075195
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 1967, "total_tokens": 2225, "completion_tokens": 258}}
+generator
+20.345731019973755
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 384, "completion_tokens": 717, "total_tokens": 1101}}
+generator
+8.259666919708252
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 375, "total_tokens": 1219, "completion_tokens": 844}}
+generator
+5.101541757583618
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 406, "completion_tokens": 759, "total_tokens": 1165, "cached_tokens": 0}}
+critic
+13.081140995025635
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 3278, "completion_tokens": 477, "total_tokens": 3755}}
+ranker
+5.030084848403931
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 3799, "total_tokens": 4255, "completion_tokens": 456}}
+generator
+7.871407985687256
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 198, "completion_tokens": 276, "total_tokens": 474}}
+generator
+4.63088321685791
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 224, "total_tokens": 680, "completion_tokens": 456}}
+generator
+3.3387248516082764
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 220, "completion_tokens": 499, "total_tokens": 719, "cached_tokens": 0}}
+critic
+8.71746015548706
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 1765, "completion_tokens": 292, "total_tokens": 2057}}
+ranker
+3.3331408500671387
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 2340, "total_tokens": 2658, "completion_tokens": 318}}
+generator
+20.39503002166748
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 190, "completion_tokens": 721, "total_tokens": 911}}
+generator
+6.922321796417236
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 197, "total_tokens": 896, "completion_tokens": 699}}
+generator
+12.697810173034668
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 211, "completion_tokens": 778, "total_tokens": 989, "cached_tokens": 0}}
+critic
+12.218544244766235
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 2825, "completion_tokens": 413, "total_tokens": 3238}}
+ranker
+3.703927993774414
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 3415, "total_tokens": 3766, "completion_tokens": 351}}
+generator
+12.752434015274048
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 470, "completion_tokens": 470, "total_tokens": 940}}
+generator
+5.57673716545105
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 489, "total_tokens": 1049, "completion_tokens": 560}}
+generator
+7.170593976974487
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 485, "completion_tokens": 363, "total_tokens": 848, "cached_tokens": 0}}
+critic
+13.335567951202393
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 2526, "completion_tokens": 499, "total_tokens": 3025}}
+ranker
+4.095963001251221
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 3186, "total_tokens": 3555, "completion_tokens": 369}}
+generator
+4.478744745254517
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 261, "completion_tokens": 158, "total_tokens": 419}}
+generator
+1.6811740398406982
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 277, "total_tokens": 430, "completion_tokens": 153}}
+generator
+4.924993991851807
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 276, "completion_tokens": 251, "total_tokens": 527, "cached_tokens": 0}}
+critic
+9.50985598564148
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 1297, "completion_tokens": 344, "total_tokens": 1641}}
+ranker
+4.014204978942871
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 1722, "total_tokens": 2113, "completion_tokens": 391}}
+generator
+10.540735006332397
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 147, "completion_tokens": 406, "total_tokens": 553}}
+generator
+2.583576202392578
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 150, "total_tokens": 367, "completion_tokens": 217}}
+generator
+8.006616830825806
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 169, "completion_tokens": 177, "total_tokens": 346, "cached_tokens": 0}}
+critic
+12.296911239624023
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 1298, "completion_tokens": 436, "total_tokens": 1734}}
+ranker
+3.7461390495300293
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 1809, "total_tokens": 2140, "completion_tokens": 331}}
+generator
+3.896083116531372
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 398, "completion_tokens": 151, "total_tokens": 549}}
+generator
+2.2763991355895996
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 461, "total_tokens": 665, "completion_tokens": 204}}
+generator
+4.4945080280303955
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 416, "completion_tokens": 390, "total_tokens": 806, "cached_tokens": 0}}
+critic
+6.189423084259033
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 1736, "completion_tokens": 216, "total_tokens": 1952}}
+ranker
+3.5306508541107178
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 2194, "total_tokens": 2504, "completion_tokens": 310}}
+generator
+19.44147825241089
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 173, "completion_tokens": 678, "total_tokens": 851}}
+generator
+8.777153015136719
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 177, "total_tokens": 1076, "completion_tokens": 899}}
+generator
+13.121987104415894
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 184, "completion_tokens": 728, "total_tokens": 912, "cached_tokens": 0}}
+critic
+14.434067010879517
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 2818, "completion_tokens": 496, "total_tokens": 3314}}
+ranker
+3.4442360401153564
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 3598, "total_tokens": 3884, "completion_tokens": 286}}
+generator
+17.27989101409912
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 339, "completion_tokens": 638, "total_tokens": 977}}
+generator
+4.724380016326904
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 369, "total_tokens": 839, "completion_tokens": 470}}
+generator
+6.04345965385437
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 361, "completion_tokens": 747, "total_tokens": 1108, "cached_tokens": 0}}
+critic
+12.894817113876343
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 2710, "completion_tokens": 479, "total_tokens": 3189}}
+ranker
+3.098039150238037
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 3469, "total_tokens": 3752, "completion_tokens": 283}}
+generator
+4.376734972000122
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 147, "completion_tokens": 149, "total_tokens": 296}}
+generator
+3.768209934234619
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 155, "total_tokens": 526, "completion_tokens": 371}}
+generator
+5.821331024169922
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 169, "completion_tokens": 407, "total_tokens": 576, "cached_tokens": 0}}
+critic
+10.509248971939087
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 1396, "completion_tokens": 434, "total_tokens": 1830}}
+ranker
+5.778153896331787
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 1988, "total_tokens": 2355, "completion_tokens": 367}}
+generator
+14.268985271453857
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 301, "completion_tokens": 536, "total_tokens": 837}}
+generator
+5.121775150299072
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 323, "total_tokens": 765, "completion_tokens": 442}}
+generator
+16.313494205474854
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 321, "completion_tokens": 440, "total_tokens": 761, "cached_tokens": 0}}
+critic
+13.947307109832764
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 2213, "completion_tokens": 566, "total_tokens": 2779}}
+ranker
+5.320756912231445
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 3016, "total_tokens": 3457, "completion_tokens": 441}}
+generator
+14.325106859207153
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 220, "completion_tokens": 523, "total_tokens": 743}}
+generator
+7.82665491104126
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 238, "total_tokens": 917, "completion_tokens": 679}}
+generator
+12.922646045684814
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 242, "completion_tokens": 413, "total_tokens": 655, "cached_tokens": 0}}
+critic
+11.672037839889526
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 2206, "completion_tokens": 426, "total_tokens": 2632}}
+ranker
+6.154004096984863
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 2840, "total_tokens": 3302, "completion_tokens": 462}}
+generator
+7.535124778747559
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 157, "completion_tokens": 316, "total_tokens": 473}}
+generator
+5.441083908081055
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 158, "total_tokens": 587, "completion_tokens": 429}}
+generator
+8.850014209747314
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 171, "completion_tokens": 901, "total_tokens": 1072, "cached_tokens": 0}}
+critic
+11.438384056091309
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 2177, "completion_tokens": 359, "total_tokens": 2536}}
+ranker
+3.4418530464172363
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 2796, "total_tokens": 3117, "completion_tokens": 321}}
+generator
+45.278523206710815
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 244, "completion_tokens": 1884, "total_tokens": 2128}}
+generator
+18.668411016464233
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 259, "total_tokens": 1769, "completion_tokens": 1510}}
+generator
+16.5983989238739
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 261, "completion_tokens": 1178, "total_tokens": 1439, "cached_tokens": 0}}
+critic
+15.050230026245117
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 5141, "completion_tokens": 560, "total_tokens": 5701}}
+ranker
+6.919763088226318
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 6458, "total_tokens": 6971, "completion_tokens": 513}}
+generator
+16.525616884231567
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 542, "completion_tokens": 635, "total_tokens": 1177}}
+generator
+5.7515482902526855
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 607, "total_tokens": 1178, "completion_tokens": 571}}
+generator
+6.7055370807647705
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 564, "completion_tokens": 439, "total_tokens": 1003, "cached_tokens": 0}}
+critic
+10.537147045135498
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 2887, "completion_tokens": 412, "total_tokens": 3299}}
+ranker
+4.9124977588653564
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 3613, "total_tokens": 4056, "completion_tokens": 443}}
+generator
+3.0838427543640137
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 197, "completion_tokens": 115, "total_tokens": 312}}
+generator
+2.47827410697937
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 204, "total_tokens": 436, "completion_tokens": 232}}
+generator
+2.534917116165161
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 219, "completion_tokens": 247, "total_tokens": 466, "cached_tokens": 0}}
+critic
+8.11263108253479
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 1186, "completion_tokens": 286, "total_tokens": 1472}}
+ranker
+2.7862250804901123
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 1534, "total_tokens": 1789, "completion_tokens": 255}}
+generator
+7.063436031341553
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 276, "completion_tokens": 271, "total_tokens": 547}}
+generator
+3.735706090927124
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 294, "total_tokens": 661, "completion_tokens": 367}}
+generator
+2.9762158393859863
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 298, "completion_tokens": 297, "total_tokens": 595, "cached_tokens": 0}}
+critic
+12.252904891967773
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 1665, "completion_tokens": 413, "total_tokens": 2078}}
+ranker
+4.349138975143433
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 2206, "total_tokens": 2606, "completion_tokens": 400}}
+generator
+8.777050733566284
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 136, "completion_tokens": 337, "total_tokens": 473}}
+generator
+2.424447774887085
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 144, "total_tokens": 347, "completion_tokens": 203}}
+generator
+2.1207289695739746
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 158, "completion_tokens": 159, "total_tokens": 317, "cached_tokens": 0}}
+critic
+11.10743498802185
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 1162, "completion_tokens": 411, "total_tokens": 1573}}
+ranker
+4.726283073425293
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 1711, "total_tokens": 2060, "completion_tokens": 349}}
+generator
+5.150773048400879
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 274, "completion_tokens": 168, "total_tokens": 442}}
+generator
+5.848936080932617
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 296, "total_tokens": 864, "completion_tokens": 568}}
+generator
+7.594371795654297
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 296, "completion_tokens": 487, "total_tokens": 783, "cached_tokens": 0}}
+critic
+10.735111951828003
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 1929, "completion_tokens": 436, "total_tokens": 2365}}
+ranker
+3.251121997833252
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 2574, "total_tokens": 2855, "completion_tokens": 281}}

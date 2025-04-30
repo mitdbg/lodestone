@@ -1048,8 +1048,6 @@ class GPQADiamondBenchmark(Benchmark):
         import random
         random.seed(42)  
         random.shuffle(choices)
-
-        # Determine the new index of the correct answer after shuffling
         correct_index = choices.index(item["Correct Answer"])
 
         # Build multiple choice prompt

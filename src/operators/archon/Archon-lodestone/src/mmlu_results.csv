@@ -1,0 +1,7 @@
+config_name,accuracy,time_seconds,benchmark
+archon-config-1,96.77,822.19,mmlu
+archon-config-5,95.83,927.59,mmlu
+example_config,98.81,1078.95,mmlu
+archon-config-4,97.1,984.65,mmlu
+archon-config-3,100.0,878.65,mmlu
+archon-config-2,66.67,793.81,mmlu
