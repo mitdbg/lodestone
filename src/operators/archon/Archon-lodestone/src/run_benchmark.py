@@ -23,7 +23,7 @@ def run_benchmark(config_path):
         "python3", "-m", "archon.completions.gen_answers",
         "--benchmark", BENCHMARK,
         "--config", config_path,
-        "--parallel", "16"
+        "--parallel", "4"
     ]
 
     result = subprocess.run(cmd)
@@ -46,7 +46,7 @@ def main():
     print(CONFIG_DIR)
     for filename in os.listdir(CONFIG_DIR):
         print(filename)
-        if filename.endswith(".json") and filename == "archon-config-1.json":
+        if filename.endswith(".json"):
             with open(USAGE_LOG_PATH, "a") as f:
                 f.write(filename + "\n")
             config_path = os.path.join(CONFIG_DIR, filename)

@@ -1,11 +1,11 @@
 {
-  "name": "archon-config-2",
+  "name": "archon-config-30",
   "layers": [
     [
       {
         "type": "generator",
-        "model": "gpt-4",
-        "model_type": "OpenAI_API",
+        "model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
+        "model_type": "Together_API",
         "temperature": 0.7,
         "max_tokens": 2048,
         "samples": 1
@@ -17,29 +17,13 @@
         "temperature": 0.7,
         "max_tokens": 2048,
         "samples": 1
-      },
-      {
-        "type": "generator",
-        "model": "Qwen/Qwen2-72B-Instruct",
-        "model_type": "Together_API",
-        "temperature": 0.7,
-        "max_tokens": 2048,
-        "samples": 1
-      },
-      {
-        "type": "generator",
-        "model": "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
-        "model_type": "Together_API",
-        "temperature": 0.7,
-        "max_tokens": 2048,
-        "samples": 1
       }
     ],
     [
       {
         "type": "critic",
-        "model": "Qwen/Qwen2-72B-Instruct",
-        "model_type": "Together_API",
+        "model": "gpt-4",
+        "model_type": "OpenAI_API",
         "temperature": 0.7,
         "max_tokens": 2048,
         "samples": 1

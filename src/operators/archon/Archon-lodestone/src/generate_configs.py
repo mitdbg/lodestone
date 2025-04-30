@@ -51,7 +51,7 @@ CRITIC_MODELS = {
     ]
 }
 
-def make_model(model_name, model_type, role):
+def make_model(model_name, model_type, role, top_k=None):
     base = {
         "type": role,
         "model": model_name,
@@ -60,28 +60,98 @@ def make_model(model_name, model_type, role):
         "max_tokens": 2048,
         "samples": 1
     }
-    if role == "ranker":
-        base["top_k"] = 5
+    if role == "ranker" and top_k is not None:
+        base["top_k"] = top_k
     return base
 
-def random_models(role, max_models=5):
+def random_models(role, max_models=5, min_models = 1, top_k=None):
     if role == "critic":
+        # Only allow 1 critic
         model_pool = [(name, api) for api, names in CRITIC_MODELS.items() for name in names]
-        num = 1  # critics should always be size 1
-    else:
+        selected = random.sample(model_pool, 1)
+        return [make_model(name, api, role) for name, api in selected]
+
+    elif role == "ranker":
+        # Only allow 1 ranker with optional top_k
         model_pool = [(name, api) for api, names in MODELS.items() for name in names]
-        num = random.randint(1, max_models)
+        selected = random.sample(model_pool, 1)
+        return [make_model(name, api, role, top_k=top_k) for name, api in selected]
 
-    selected = random.sample(model_pool, min(num, len(model_pool)))
-    return [make_model(name, api, role) for name, api in selected]
+    elif role == "generator":
+        # Random number of generators between 2 and 5 (or max available)
+        model_pool = [(name, api) for api, names in MODELS.items() for name in names]
+        upper_bound = min(5, len(model_pool))
+        num = random.randint(2, upper_bound)
+        selected = random.sample(model_pool, num)
+        return [make_model(name, api, role) for name, api in selected]
 
-def random_models_old(role, max_models=5):
-    num = random.randint(1, max_models)
-    all_models = [(name, api) for api, names in MODELS.items() for name in names]
-    selected = random.sample(all_models, num)
-    return [make_model(name, api, role) for name, api in selected]
+    else:
+        # fuser or other roles can have 1 to max_models
+        model_pool = [(name, api) for api, names in MODELS.items() for name in names]
+        num = random.randint(min_models, min(max_models, len(model_pool)))
+        selected = random.sample(model_pool, num)
+        return [make_model(name, api, role) for name, api in selected]
 
 def generate_config(index):
+    config = {
+        "name": f"archon-config-{index}",
+        "layers": []
+    }
+
+    # First layer must be multiple generators
+    config["layers"].append(random_models("generator", max_models=5))
+    roles = ["generator"]
+
+    # Decide which valid config type we want
+    config_type = random.choice([
+        "gen_rank",              # 2-layer: Generator → Ranker
+        "gen_fuser",             # 2-layer: Generator → Fuser
+        "gen_critic_rank",       # 3-layer: Generator → Critic → Ranker
+        "gen_critic_fuser",      # 3-layer: Generator → Critic → Fuser
+        "gen_fuser_rank",        # 3-layer: Generator → Fuser(s) → Ranker
+        "gen_rank_fuser"         # 3-layer: Generator → Ranker (top_k=3) → Fuser
+    ])
+
+    if config_type == "gen_rank":
+        ranker = random_models("ranker", max_models=1)
+        for model in ranker:
+            model["top_k"] = 1
+        config["layers"].append(ranker)
+
+    elif config_type == "gen_fuser":
+        fuser = random_models("fuser", max_models=1)
+        config["layers"].append(fuser)
+
+    elif config_type == "gen_critic_rank":
+        critic = random_models("critic", max_models=1)
+        ranker = random_models("ranker", max_models=1)
+        for model in ranker:
+            model["top_k"] = 1
+        config["layers"].extend([critic, ranker])
+
+    elif config_type == "gen_critic_fuser":
+        critic = random_models("critic", max_models=1)
+        fuser = random_models("fuser", max_models=1)
+        config["layers"].extend([critic, fuser])
+
+    elif config_type == "gen_fuser_rank":
+        fuser = random_models("fuser", max_models=3, min_models = 2)
+        ranker = random_models("ranker", max_models=1)
+        for model in ranker:
+            model["top_k"] = 1
+        config["layers"].extend([fuser, ranker])
+
+    elif config_type == "gen_rank_fuser":
+        ranker = random_models("ranker", max_models=1)
+        for model in ranker:
+            model["top_k"] = random.randint(2,4)
+        fuser = random_models("fuser", max_models=1)
+        config["layers"].extend([ranker, fuser])
+
+    return config
+
+
+def generate_config_old(index):
     config = {
         "name": f"archon-config-{index}",
         "layers": []
@@ -143,56 +213,7 @@ def generate_config(index):
 
     return config
 
-
-def generate_config_old(i):
-    config = {
-        "name": f"archon-config-{i}",
-        "layers": []
-    }
-
-    # First layer: generators only
-    generator_layer = random_models("generator")
-    config["layers"].append(generator_layer)
-
-    inserted_critic = False
-    inserted_ranker = False
-    ranker_layer_idx = None
-    max_layers = random.randint(2, 4)
-    roles = ["generator"]
-
-    # Build middle layers
-    for layer_idx in range(1, max_layers):
-        if not inserted_critic:
-            role = random.choice(["critic", "fuser"])
-            if role == "critic":
-                critic_layer = random_models("critic")
-                config["layers"].append(critic_layer)
-                roles.append("critic")
-                inserted_critic = True
-            else:
-                config["layers"].append(random_models("fuser"))
-                roles.append("fuser")
-        else:
-            role = random.choice(["ranker", "fuser"])
-            if role == "ranker":
-                ranker_layer = random_models("ranker", max_models=1)
-                config["layers"].append(ranker_layer)
-                roles.append("ranker")
-                inserted_ranker = True
-                ranker_layer_idx = len(config["layers"]) - 1
-            else:
-                config["layers"].append(random_models("fuser"))
-                roles.append("fuser")
-
-    # Post-process: fix ranker top_k if there's no fuser after it
-    if inserted_ranker and "fuser" not in roles[ranker_layer_idx + 1:]:
-        ranker_layer = config["layers"][ranker_layer_idx]
-        for model in ranker_layer:
-            model["top_k"] = 1  # force top_k to 1 since no fuser follows
-
-    return config
-
-# Generate and print 5 configs
+# Generate and print the rest of the configs (till 100)
 def gen_and_save_configs(NUM_CONFIGS, CONFIG_DIR):
     for i in range(1, NUM_CONFIGS + 1):
         cfg = generate_config(i)
@@ -201,7 +222,7 @@ def gen_and_save_configs(NUM_CONFIGS, CONFIG_DIR):
             json.dump(cfg, f, indent=2)
         print(f"✅ Saved: {path}")
 
-gen_and_save_configs(5, "configs")
+gen_and_save_configs(100, "configs")
 '''
 configs = [generate_config(i) for i in range(5)]
 for cfg in configs:
