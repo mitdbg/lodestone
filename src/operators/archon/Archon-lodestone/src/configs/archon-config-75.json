@@ -1,0 +1,43 @@
+{
+  "name": "archon-config-75",
+  "layers": [
+    [
+      {
+        "type": "generator",
+        "model": "gpt-4",
+        "model_type": "OpenAI_API",
+        "temperature": 0.7,
+        "max_tokens": 2048,
+        "samples": 1
+      },
+      {
+        "type": "generator",
+        "model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
+        "model_type": "Together_API",
+        "temperature": 0.7,
+        "max_tokens": 2048,
+        "samples": 1
+      }
+    ],
+    [
+      {
+        "type": "critic",
+        "model": "Qwen/Qwen2-72B-Instruct",
+        "model_type": "Together_API",
+        "temperature": 0.7,
+        "max_tokens": 2048,
+        "samples": 1
+      }
+    ],
+    [
+      {
+        "type": "fuser",
+        "model": "Qwen/Qwen2-72B-Instruct",
+        "model_type": "Together_API",
+        "temperature": 0.7,
+        "max_tokens": 2048,
+        "samples": 1
+      }
+    ]
+  ]
+}

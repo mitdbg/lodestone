@@ -1,0 +1,16 @@
+archon-config-1.json
+generator
+2.4219248294830322
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 93, "completion_tokens": 79, "total_tokens": 172}}
+generator
+1.6738579273223877
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 88, "total_tokens": 200, "completion_tokens": 112}}
+generator
+0.9343459606170654
+{"model": "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", "usage": {"prompt_tokens": 111, "completion_tokens": 109, "total_tokens": 220, "cached_tokens": 0}}
+critic
+9.089543104171753
+{"model": "Qwen/Qwen2-72B-Instruct", "usage": {"prompt_tokens": 698, "completion_tokens": 345, "total_tokens": 1043}}
+ranker
+2.8776557445526123
+{"model": "mistralai/Mixtral-8x22B-Instruct-v0.1", "usage": {"prompt_tokens": 1054, "total_tokens": 1314, "completion_tokens": 260}}
