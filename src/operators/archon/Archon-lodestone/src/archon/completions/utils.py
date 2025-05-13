@@ -19,7 +19,7 @@ log_lock = threading.Lock()
 thread_local_storage = threading.local()
 
 
-USAGE_LOG_PATH = "/Users/yashaga/lodestone/src/operators/archon/Archon-lodestone/src/gpqa_multithreaded_log.jsonl"
+USAGE_LOG_PATH = "/Users/yashaga/lodestone/src/operators/archon/Archon-lodestone/src/gpqa_multithreaded_log_part4.jsonl"
 
 def log_usage(model, usage):
     entry = {

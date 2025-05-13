@@ -1037,7 +1037,8 @@ class GPQADiamondBenchmark(Benchmark):
         print(f"Total number of items to process: {len(self.dataset)}")
         return self.dataset
 
-    def get_answer(self, item, model, config, **kwargs):
+    def get_answer(self, item_and_idx, model, config, **kwargs):
+        item, question_number = item_and_idx
         choices = [
             item["Correct Answer"],
             item["Incorrect Answer 1"],
@@ -1046,9 +1047,8 @@ class GPQADiamondBenchmark(Benchmark):
         ]
         # Randomize the order of choices to avoid position bias
         import random
-        random.seed(42)  
-        random.shuffle(choices)
-        correct_index = choices.index(item["Correct Answer"])
+        correct_index = random.randint(0, 3)
+        choices[correct_index], choices[0] = choices[0], choices[correct_index]
 
         # Build multiple choice prompt
         prompt = f"Question: {item['Question']}\n"
@@ -1067,6 +1067,8 @@ class GPQADiamondBenchmark(Benchmark):
             with log_lock:
                 with open(USAGE_LOG_PATH, "a") as f:
                     for layer_type, elapsed_time, usage in thread_local_storage.log_buffer:
+                        f.write("Question Number " + str(question_number + 1) + " \n")
+                        #f.write(item['Question'] + "\n")
                         f.write(layer_type + "\n")
                         f.write(str(elapsed_time) + "\n")
                         f.write(json.dumps({"model": usage["model"], "usage": usage["usage"]}) + "\n")

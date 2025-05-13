@@ -72,12 +72,12 @@ def main(args):
                         config=archon_config,
                         samples=args.samples
                     ),
-                    eval_set,  
-                    #[i + 1 for i in range(len(eval_set))]  
+                    [(item, idx) for idx, item in enumerate(eval_set)],  # pass (item, index)
                 ),
                 total=len(eval_set),
             )
         )
+
 
     # update benchmark data
     eval_set = benchmark.process_results(results)
